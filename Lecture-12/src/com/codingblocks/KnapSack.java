@@ -3,10 +3,10 @@ package com.codingblocks;
 public class KnapSack {
 
     public static void main(String[] args) {
-        int[] weight = {11, 10, 10};
-        int[] price = {3, 2, 2};
+        int[] weight = {2, 1, 3, 2};
+        int[] price = {3, 2, 5, 1};
 
-        int cap = 20;
+        int cap = 5;
 
         int[][] mem = new int[weight.length + 1][cap + 1];
 
@@ -16,9 +16,39 @@ public class KnapSack {
             }
         }
 
-        System.out.println(knapDP(weight, price, 0, cap, mem));
+        System.out.println(knapITR(weight, price, cap));
 
 //        System.out.println(knap(weight, price, 0, 20));
+    }
+
+    public static int knapITR(int[] weight, int[] price, int capacity){
+        int[][] mem = new int[weight.length + 1][capacity+ 1];
+
+        for (int size = 0; size <= weight.length ; size++) {
+            for (int cap = 0; cap <= capacity; cap++) {
+                if (size == 0 || cap == 0){
+                    mem[size][cap] = 0;
+                } else {
+                    int include = 0;
+                    if (cap >= weight[size-1]){
+                        include = price[size-1] + mem[size-1][cap - weight[size-1]];
+                    }
+
+                    int exclude = mem[size-1][cap];
+
+                    mem[size][cap] = Math.max(include, exclude);
+                }
+            }
+        }
+
+        for (int i = 0; i <= weight.length; i++) {
+            for (int j = 0; j <= capacity ; j++) {
+                System.out.print(mem[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+        return mem[weight.length][capacity];
     }
 
     public static int knap(int[] weight, int[] price, int index, int capacity){
