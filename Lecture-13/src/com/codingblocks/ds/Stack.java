@@ -15,6 +15,8 @@ public class Stack {
     }
 
     public void push(int item) throws Exception{
+
+
         if (isFull()){
             throw new Exception("Stack is full");
         }
