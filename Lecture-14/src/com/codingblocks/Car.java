@@ -2,7 +2,7 @@ package com.codingblocks;
 
  public class Car {
 
-     int seats;
+     public int seats;
      private int windows;
 
     private boolean turbo;
