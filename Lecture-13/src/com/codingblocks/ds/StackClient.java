@@ -2,21 +2,18 @@ package com.codingblocks.ds;
 
 public class StackClient {
     public static void main(String[] args){
-        Stack stack = new Stack();
+        Stack stack = new DynamicStack();
 
         try {
 
-            stack.push(234);
-            stack.push(546);
-            stack.push(76);
-            stack.push(26534);
-            stack.push(65);
+            for (int i = 0; i < 10000; i++) {
+                stack.push((int)(Math.random()*1000));
+            }
 
-            System.out.println(stack.pop());
-            System.out.println(stack.pop());
-            System.out.println(stack.pop());
-            System.out.println(stack.pop());
-            System.out.println(stack.pop());
+
+            while (!stack.isEmpty()){
+                System.out.println(stack.pop());
+            }
 
         } catch (Exception ex){
             System.out.println(ex.getMessage());

@@ -2,9 +2,20 @@ package com.codingblocks.ds;
 
 public class Stack {
 
-    private int top = -1;
+    private int top;
     private int DEFAULT_SIZE = 5;
-    private int[] data = new int[DEFAULT_SIZE];
+    protected int[] data;
+
+    public Stack(){
+        this.top = -1;
+        this.data = new int[DEFAULT_SIZE];
+    }
+
+
+    public Stack(int size){
+        this.top = -1;
+        this.data = new int[size];
+    }
 
     public boolean isFull(){
         return this.top == this.data.length - 1;

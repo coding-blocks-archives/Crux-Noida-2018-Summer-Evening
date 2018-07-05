@@ -1,12 +1,12 @@
 package com.codingblocks;
 
 public class Human {
-    private int balance;
+    private static int balance;
     private int eyes;
 
-//    public static int giveCharity(Human human){
-//        human.balance = human.balance - 1000;
-//        System.out.println("Yaar ab bas rah gye " + human.balance);
+//    public static int giveCharity(){
+//        balance = balance - 1000;
+//        System.out.println("Yaar ab bas rah gye " + balance);
 //
 //        return 1000;
 //    }
