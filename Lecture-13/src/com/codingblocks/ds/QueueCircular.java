@@ -1,12 +1,12 @@
 package com.codingblocks.ds;
 
-public class QueueCircular {
+public class QueueCircular extends Queue{
 
-    private int start = 0;
-    private int end = 0;
-    private int size = 0;
+    protected int start = 0;
+    protected int end = 0;
+    protected int size = 0;
     private int DEFAULT_SIZE = 5;
-    private int[] data = new int[DEFAULT_SIZE];
+    protected int[] data = new int[DEFAULT_SIZE];
 
     public boolean isEmpty(){
         return this.size == 0;
