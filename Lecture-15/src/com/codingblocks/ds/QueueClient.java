@@ -2,7 +2,7 @@ package com.codingblocks.ds;
 
 public class QueueClient {
     public static void main(String[] args){
-        Queue queue = new QueueUsingStackRemove();
+        QueueCircular queue = new QueueUsingStackRemove();
 
         try {
 
