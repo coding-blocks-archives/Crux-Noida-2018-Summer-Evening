@@ -1,20 +1,20 @@
 package com.codingblocks.ds;
 
-public class StackClient {
+public class QueueClient {
     public static void main(String[] args){
-        Stack stack = new DynamicStack();
+        Queue queue = new QueueUsingStackRemove();
 
         try {
 
             for (int i = 0; i < 10; i++) {
                 int item = (int)(Math.random()*1000);
-                stack.push(item);
-                System.out.println("pushed " + item);
+                queue.insert(item);
+                System.out.println("inserted " + item);
             }
 
 
-            while (!stack.isEmpty()){
-                System.out.println("popped" + stack.pop());
+            while (!queue.isEmpty()){
+                System.out.println("removed" + queue.remove());
             }
 
         } catch (Exception ex){
