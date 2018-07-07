@@ -2,10 +2,14 @@ package com.codingblocks;
 
 public class ModifiedCar {
 
-    private PetrolEngine engine;
+    private Engine engine;
 
-    public ModifiedCar(){
-        this.engine = new PetrolEngine();
+//    public ModifiedCar(){
+//        this.engine = new PetrolEngine();
+//    }
+
+    public ModifiedCar(Engine engine){
+        this.engine = engine;
     }
 
     public void start(){
@@ -14,5 +18,9 @@ public class ModifiedCar {
 
     public void stop(){
         engine.stop();
+    }
+
+    public void upgradeEngine(Engine engine){
+        this.engine = engine;
     }
 }
