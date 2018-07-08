@@ -1,5 +1,7 @@
 package com.codingblocks;
 
+import java.util.ArrayList;
+
 public class LinkedList {
 
     private Node head;
@@ -50,6 +52,22 @@ public class LinkedList {
 
         size++;
 
+    }
+
+    public int delete(int index) throws Exception{
+        if (index == 0){
+            return deleteFirst();
+        }
+        if (index == size - 1){
+            return deleteLast();
+        }
+
+        Node prev = get(index - 1);
+        int temp = prev.next.value;
+        prev.next = prev.next.next;
+
+        size--;
+        return temp;
     }
 
     public Node get(int index){
@@ -113,6 +131,69 @@ public class LinkedList {
         return temp;
     }
 
+    public boolean exists(int value){
+        Node node = head;
+
+        while (node != null){
+            if (node.value == value){
+                return true;
+            }
+            node = node.next;
+        }
+
+        return false;
+    }
+
+    public int find(int value){
+        Node node = head;
+        int index = 0;
+
+        while (node != null){
+            if (node.value == value){
+                return index;
+            }
+            node = node.next;
+            index += 1;
+        }
+
+        return -1;
+    }
+
+    public ArrayList findAll(int value){
+        Node node = head;
+        int index = 0;
+
+        ArrayList list = new ArrayList();
+
+        while (node != null){
+            if (node.value == value){
+                list.add(index);
+            }
+            node = node.next;
+            index += 1;
+        }
+
+        return list;
+    }
+
+    public void removeDuplicates(){
+        if (size <= 1){
+            return;
+        }
+
+        Node node = head;
+
+        while (node.next != null){
+            if (node.value == node.next.value){
+                node.next = node.next.next;
+                size--;
+            } else {
+                node = node.next;
+            }
+        }
+
+        tail = node;
+    }
 
 
     private class Node {
@@ -126,6 +207,10 @@ public class LinkedList {
         public Node(int value, Node next) {
             this.value = value;
             this.next = next;
+        }
+
+        public int getValue() {
+            return value;
         }
     }
 }
