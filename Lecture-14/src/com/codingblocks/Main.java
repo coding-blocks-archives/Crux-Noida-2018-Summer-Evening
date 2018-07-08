@@ -8,6 +8,7 @@ public class Main {
         Car audi = new Car();
 
 
+        audi.stop();
 //        audi.name = "Anuj ki Audi";
 //
 //        System.out.println(audi.getSeats());
