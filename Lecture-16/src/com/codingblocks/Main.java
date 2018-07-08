@@ -37,6 +37,9 @@ public class Main {
 
         list.display();
 
+        list.reverse();
+
+        list.display();
 
     }
 }

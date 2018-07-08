@@ -195,6 +195,49 @@ public class LinkedList {
         tail = node;
     }
 
+    public void reverse(){
+
+        if (size <= 1){
+            return;
+        }
+
+//        reverse(head);
+
+        tail = head;
+
+        Node prev = null;
+        Node present = head;
+        Node next = present.next;
+
+        while (present != null){
+            present.next = prev;
+
+            prev = present;
+            present = next;
+
+            if (next != null) {
+                next = next.next;
+            }
+        }
+
+
+        head = present;
+
+    }
+
+    private void reverse(Node node) {
+        if (node.next == null){
+            head = tail;
+            return;
+        }
+
+        reverse(node.next);
+
+        tail.next = node;
+        tail = node;
+        tail.next =null;
+    }
+
 
     private class Node {
         private int value;
