@@ -9,6 +9,11 @@ public class TreeClient {
 
         tree.populate();
 
-        tree.display();
+//        tree.display();
+
+//        System.out.println(tree.count());
+//        System.out.println(tree.max());
+
+        tree.preOrder();
     }
 }
