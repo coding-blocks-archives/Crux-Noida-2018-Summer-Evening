@@ -31,13 +31,17 @@ public class Main {
         list.insertLast(16);
         list.insertLast(16);
 
+//        list.display();
+//
+//        list.removeDuplicates();
+//
+//        list.display();
+//
+//        list.reverse();
+
         list.display();
 
-        list.removeDuplicates();
-
-        list.display();
-
-        list.reverse();
+        list.lastN(3);
 
         list.display();
 

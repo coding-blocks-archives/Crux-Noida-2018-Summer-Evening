@@ -209,6 +209,7 @@ public class LinkedList {
         Node present = head;
         Node next = present.next;
 
+
         while (present != null){
             present.next = prev;
 
@@ -238,6 +239,25 @@ public class LinkedList {
         tail.next =null;
     }
 
+    //Append the last n elements of a linked list to the front. e.g. for 1→2→3→4→5→6→null and n = 2 return 5→6→1→2→3→4→null
+
+    public void lastN(int n){
+
+        if (head == null || head.next == null){
+            return;
+        }
+
+        Node ex_tail = get(size - n - 1);
+        Node ex_head = ex_tail.next;
+
+        tail.next = head;
+
+        head = ex_head;
+        tail = ex_tail;
+
+        tail.next = null;
+
+    }
 
     private class Node {
         private int value;
