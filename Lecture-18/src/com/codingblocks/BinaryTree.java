@@ -17,6 +17,8 @@ public class BinaryTree {
         populate(root, scanner);
     }
 
+    // 12 true 6 true 23 false false true 40 true 21 false false false true 13 false false
+
     private void populate(Node node, Scanner scanner) {
         System.out.println("Want to add left child of " + node.value);
         boolean left = scanner.nextBoolean();
@@ -25,6 +27,7 @@ public class BinaryTree {
             System.out.println("Enter left value of " + node.value);
             int value = scanner.nextInt();
             node.left = new Node(value);
+            populate(node.left, scanner);
         }
 
         System.out.println("Want to add right child of " + node.value);
@@ -34,6 +37,7 @@ public class BinaryTree {
             System.out.println("Enter right value of " + node.value);
             int value = scanner.nextInt();
             node.right = new Node(value);
+            populate(node.right, scanner);
         }
     }
 
