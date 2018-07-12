@@ -194,26 +194,8 @@ public class BinaryTree {
         return isBST(node.left, min, node.value) && isBST(node.right, node.value, max);
     }
 
-    public void populateFromPreIn(int[] pre, int[] in){
 
-        int r = pre[0];
-
-        int index = find(in, r);
-
-        int[] preLeft = Arrays.copyOfRange(pre, 1, index + 1);
-        int[] preRight = Arrays.copyOfRange(pre, index + 1, pre.length);
-
-        int[] inLeft = Arrays.copyOfRange(in, 0, index);
-        int[] inRight = Arrays.copyOfRange(in, index + 1, in.length);
-
-        root = new Node(r);
-
-        root.left = getTreeFromPreInRec(preLeft, inLeft);
-        root.right = getTreeFromPreInRec(preRight, inRight);
-
-    }
-
-    public Node getTreeFromPreInRec(int[] pre, int[] in){
+    public Node getTreeFromPreIn(int[] pre, int[] in){
 
         if (pre.length == 0){
             return null;
@@ -229,10 +211,18 @@ public class BinaryTree {
         int[] inLeft = Arrays.copyOfRange(in, 0, index);
         int[] inRight = Arrays.copyOfRange(in, index + 1, in.length);
 
-        Node node =  new Node(r);
 
-        node.left = getTreeFromPreInRec(preLeft, inLeft);
-        node.right = getTreeFromPreInRec(preRight, inRight);
+
+        Node node = new Node(r);
+
+        if (root == null){
+            root = node;
+        }
+
+        node.left = getTreeFromPreIn(preLeft, inLeft);
+        node.right = getTreeFromPreIn(preRight, inRight);
+
+
 
         return node;
 

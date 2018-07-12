@@ -5,15 +5,15 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         BinaryTree tree = new BinaryTree();
-        tree.populate();
+//        tree.populate();
 //
-//        int[] pre = {12, 6, 23, 40, 21, 13};
-//
-//        int[] in = {23, 6, 21, 40, 12, 13};
-//
-////        tree.getTreeFromPreIn(pre, in);
+        int[] pre = {12, 6, 23, 40, 21, 13};
 
-//        tree.display();
+        int[] in = {23, 6, 21, 40, 12, 13};
+
+        tree.getTreeFromPreIn(pre, in);
+
+        tree.display();
 
 //        System.out.println(tree.diameter());
 //
@@ -25,6 +25,6 @@ public class Main {
 
 //        tree.orders();
 
-        System.out.println(tree.isBST());
+//        System.out.println(tree.isBST());
     }
 }
