@@ -6,14 +6,14 @@ public class Main {
 	// write your code here
         BinaryTree tree = new BinaryTree();
         tree.populate();
+//
+//        int[] pre = {12, 6, 23, 40, 21, 13};
+//
+//        int[] in = {23, 6, 21, 40, 12, 13};
+//
+////        tree.getTreeFromPreIn(pre, in);
 
-        int[] pre = {12, 6, 23, 40, 21, 13};
-
-        int[] in = {23, 6, 21, 40, 12, 13};
-
-        tree.getTreeFromPreIn(pre, in);
-
-        tree.display();
+//        tree.display();
 
 //        System.out.println(tree.diameter());
 //
@@ -24,5 +24,7 @@ public class Main {
 //        System.out.println(node.getValue());
 
 //        tree.orders();
+
+        System.out.println(tree.isBST());
     }
 }

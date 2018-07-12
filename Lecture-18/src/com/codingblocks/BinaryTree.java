@@ -12,7 +12,7 @@ public class BinaryTree {
 
     public void populate(){
 
-        Scanner scanner = new Scanner("12 true 6 true 23 false false true 40 true 21 false false false true 13 false false");
+        Scanner scanner = new Scanner("12 true 6 false false true 13 false false");
         System.out.println("Value of root node ");
         int value = scanner.nextInt();
 
@@ -178,7 +178,23 @@ public class BinaryTree {
         return Math.max(left, right) + 1;
     }
 
-    public void getTreeFromPreIn(int[] pre, int[] in){
+    public boolean isBST(){
+        return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBST(Node node, int min, int max){
+        if (node == null){
+            return true;
+        }
+
+        if (node.value >= max || node.value <= min){
+            return false;
+        }
+
+        return isBST(node.left, min, node.value) && isBST(node.right, node.value, max);
+    }
+
+    public void populateFromPreIn(int[] pre, int[] in){
 
         int r = pre[0];
 
