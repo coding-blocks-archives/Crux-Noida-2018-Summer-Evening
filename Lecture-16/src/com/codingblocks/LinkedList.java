@@ -222,7 +222,7 @@ public class LinkedList {
         }
 
 
-        head = present;
+        head = prev;
 
     }
 
