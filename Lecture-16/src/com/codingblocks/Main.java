@@ -41,7 +41,7 @@ public class Main {
 
         list.display();
 
-        list.lastN(3);
+        list.kReverseSameList(2);
 
         list.display();
 

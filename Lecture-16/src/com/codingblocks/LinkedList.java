@@ -1,6 +1,7 @@
 package com.codingblocks;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class LinkedList {
 
@@ -256,6 +257,66 @@ public class LinkedList {
         tail = ex_tail;
 
         tail.next = null;
+
+    }
+
+    public LinkedList kReverse(int k){
+
+//        Node ex_head = null;
+//        Node ex_tail = null;
+
+        Stack<Node> stack = new Stack<>();
+
+        Node node = head;
+
+        LinkedList list = new LinkedList();
+
+        while (node != null){
+            for (int i = 0; i < k && node != null; i++) {
+                stack.push(node);
+                node = node.next;
+            }
+
+            while (!stack.isEmpty()){
+                list.insertLast(stack.pop().value);
+            }
+        }
+
+        return list;
+
+    }
+
+    public void kReverseSameList(int k){
+
+        Node ex_head = null;
+        Node ex_tail = null;
+
+        Stack<Node> stack = new Stack<>();
+
+        Node node = head;
+
+        while (node != null){
+            for (int i = 0; i < k && node != null; i++) {
+                stack.push(node);
+                node = node.next;
+            }
+
+            while (!stack.isEmpty()){
+                if (ex_head == null){
+                    ex_head = stack.pop();
+                    ex_tail = ex_head;
+                }
+
+                ex_tail.next = stack.pop();
+                ex_tail = ex_tail.next;
+                ex_tail.next = null;
+
+            }
+        }
+
+        head = ex_head;
+        tail = ex_tail;
+
 
     }
 
