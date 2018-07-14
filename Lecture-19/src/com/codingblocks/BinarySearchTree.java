@@ -37,7 +37,53 @@ public class BinarySearchTree <T extends Comparable> {
             node.right = insert(node.right, value);
         }
 
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
+
         return node;
+    }
+
+    public int balance(Node node){
+        return height(node.left) - height(node.right);
+    }
+
+    private Node rightRotate(Node x){
+
+        // before swap
+        Node y = x.left;
+        Node T2 = y.right;
+
+        // rotation
+        y.right = x;
+        x.left = T2;
+
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+
+        return y;
+    }
+
+    public Node leftRotation(Node y){
+        // before rotation
+        Node x = y.right;
+        Node t2 = x.left;
+
+        // rotation
+        x.left = y;
+        y.right = t2;
+
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+
+        return x;
+
+    }
+
+    private int height(Node node){
+        if (node == null){
+            return 0;
+        }
+
+        return node.height;
     }
 
     public void inorder(){
@@ -115,9 +161,12 @@ public class BinarySearchTree <T extends Comparable> {
         private T value;
         private Node left;
         private Node right;
+        private int height;
 
         public Node(T value) {
             this.value = value;
+
+            this.height = 1;
         }
     }
 }
