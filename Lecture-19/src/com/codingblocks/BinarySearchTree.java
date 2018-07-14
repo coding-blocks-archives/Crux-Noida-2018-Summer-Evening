@@ -39,6 +39,24 @@ public class BinarySearchTree <T extends Comparable> {
 
         node.height = Math.max(height(node.left), height(node.right)) + 1;
 
+        if (balance(node) > 1){
+            if (balance(node.left) > 0){
+                return rightRotate(node);
+            } else if (balance(node.left) < 0){
+                node.left = leftRotation(node.left);
+                return rightRotate(node);
+            }
+        }
+
+        if (balance(node) < -1){
+            if (balance(node.right) < 0){
+                return leftRotation(node);
+            } else if(balance(node.right) > 0){
+                node.right = rightRotate(node.right);
+                return leftRotation(node);
+            }
+        }
+
         return node;
     }
 

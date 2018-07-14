@@ -6,16 +6,14 @@ public class Main {
 	// write your code here
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
 
-        Integer[] nums = new Integer[10000];
-
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = i;
+        for (int i = 1; i < 4; i++) {
+            tree.insert(i);
         }
 
-        tree.populate(nums);
+//        tree.populate(nums);
 
 //        tree.inrange(10, 20);
 
-        tree.display();
+//        tree.display();
     }
 }
