@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MapUsingList<String, String> map = new MapUsingList<>();
+        MapUsingArray<String, String> map = new MapUsingArray<>();
 
         map.put("apple", "a sweet red fruit");
         map.put("mango", "king of fruits");
@@ -15,10 +15,10 @@ public class Main {
 
         map.put("mango", "king of fruits till last year");
 
-        map.remove("apple");
+//        map.remove("apple");
 
-        String val = map.get("apple");
+        String val = map.get("mango");
 
-        System.out.println(val);
+        System.out.println("apple".hashCode());
     }
 }
