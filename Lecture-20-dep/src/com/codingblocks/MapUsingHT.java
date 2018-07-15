@@ -40,12 +40,25 @@ public class MapUsingHT<K, V> extends Object{
 
     public void remove(K key){
         int location = key.hashCode() % list.size();
-        list.set(location, null);
+
+        for (Node node : list.get(location)){
+            if (node.key.equals(key)){
+                list.get(location).remove(node);
+                return;
+            }
+        }
     }
 
     public boolean contains(K key){
         int location = key.hashCode() % list.size();
-        return list.get(location) != null;
+
+        for (Node node : list.get(location)){
+            if (node.key.equals(key)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private class Node {
