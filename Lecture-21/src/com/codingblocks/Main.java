@@ -19,6 +19,10 @@ public class Main {
 
         Arrays.sort(items);
 
+        for (Item item: items) {
+            System.out.println(item);
+        }
+
         float bag = 8;
 
         float value = 0;
@@ -44,6 +48,11 @@ public class Main {
         public Item(float rate, float weight) {
             this.rate = rate;
             this.weight = weight;
+        }
+
+        @Override
+        public String toString() {
+            return rate + " : " + weight;
         }
 
         @Override
