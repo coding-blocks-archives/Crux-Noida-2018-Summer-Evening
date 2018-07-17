@@ -35,9 +35,13 @@ public class GenericHeap <T extends Comparable> {
 
     public T remove(){
         T temp = items.get(0);
-        items.set(0, items.remove(items.size() - 1));
 
-        downheap(0);
+        T data = items.remove(items.size() - 1);
+
+        if (!isEmpty()){
+            items.set(0, data);
+            downheap(0);
+        }
 
         return temp;
     }
