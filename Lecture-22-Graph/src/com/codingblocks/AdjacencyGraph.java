@@ -2,14 +2,12 @@ package com.codingblocks;
 
 import java.util.LinkedList;
 
-public class EdgeListGraph <T> {
+public class AdjacencyGraph<T> {
 
     private LinkedList<Vertex> vertices;
-    private LinkedList<Edge> edges;
 
-    public EdgeListGraph() {
+    public AdjacencyGraph() {
         this.vertices = new LinkedList<>();
-        this.edges = new LinkedList<>();
     }
 
     public void addVertex(T value){
@@ -22,15 +20,10 @@ public class EdgeListGraph <T> {
         Vertex e = get(end);
 
         if (s != null && e != null) {
-            this.edges.add(new Edge(s, e));
+            s.nbrs.add(e);
+            e.nbrs.add(s);
         }
 
-    }
-
-    public void showRelations(){
-        for (Edge edge : edges){
-            System.out.println(edge.start.value + " -> " + edge.end.value);
-        }
     }
 
     private Vertex get(T value){
@@ -41,6 +34,14 @@ public class EdgeListGraph <T> {
         }
 
         return null;
+    }
+
+    public void showRelations() {
+        for (Vertex vertex : vertices){
+            for (Vertex padosi : vertex.nbrs) {
+                System.out.println(vertex.value + " -> " + padosi.value);
+            }
+        }
     }
 
     private class Edge {
@@ -55,9 +56,11 @@ public class EdgeListGraph <T> {
 
     private class Vertex {
         private T value;
+        private LinkedList<Vertex> nbrs;
 
         public Vertex(T value) {
             this.value = value;
+            nbrs = new LinkedList<>();
         }
 
     }
