@@ -24,6 +24,8 @@ public class Main {
         graph.addEdge("Ranu", "Geeta");
 
 
-        graph.showRelations();
+        System.out.println(graph.BFS("Geeta"));
+        System.out.println(graph.BFS("Geet"));
+//        graph.showRelations();
     }
 }

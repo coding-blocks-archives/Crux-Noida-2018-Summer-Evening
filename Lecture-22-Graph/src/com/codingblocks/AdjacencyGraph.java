@@ -1,6 +1,9 @@
 package com.codingblocks;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 public class AdjacencyGraph<T> {
 
@@ -44,14 +47,36 @@ public class AdjacencyGraph<T> {
         }
     }
 
-    private class Edge {
-        private Vertex start;
-        private Vertex end;
-
-        public Edge(Vertex start, Vertex end) {
-            this.start = start;
-            this.end = end;
+    public boolean BFS(T value){
+        if (vertices.isEmpty()){
+            return false;
         }
+
+        Set<Vertex> set = new HashSet<>();
+        Queue<Vertex> queue = new LinkedList<>();
+
+        Vertex v = vertices.get(0);
+
+        set.add(v);
+        queue.add(v);
+
+        while (!queue.isEmpty()){
+            Vertex vertex = queue.remove();
+
+            if (vertex.value.equals(value)){
+                return true;
+            }
+
+            for (Vertex padosi : vertex.nbrs){
+                if (!set.contains(padosi)){
+                    set.add(padosi);
+                    queue.add(padosi);
+                }
+            }
+        }
+
+        return false;
+
     }
 
     private class Vertex {
