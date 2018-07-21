@@ -55,6 +55,12 @@ public class AdjacencyMapWeightGraph<T> {
     }
 
     public int kruskal(){
+
+        HashMap<Vertex, Vertex> parent = new HashMap<>();
+        for (Vertex vertex : vertexMap.values()) {
+            parent.put(vertex, null);
+        }
+
         PriorityQueue<Edge> queue = new PriorityQueue<>();
 
         for (Vertex vertex : vertexMap.values()) {
@@ -64,14 +70,108 @@ public class AdjacencyMapWeightGraph<T> {
             }
         }
 
+        int weight = 0;
+
         while (!queue.isEmpty()){
             Edge edge = queue.remove();
 
-            System.out.println(edge.start.value + " " + edge.end.value + " " + edge.weight);
+            if (find(edge.start, parent) != find(edge.end, parent)){
+                weight += edge.weight;
+                union(edge.start, edge.end, parent);
+            }
         }
 
-        return 0;
+        return weight;
     }
+
+    private void union(Vertex start, Vertex end, HashMap<Vertex, Vertex> parent) {
+        parent.put(find(start, parent), find(end, parent));
+    }
+
+    private Vertex find(Vertex vertex, HashMap<Vertex, Vertex> parent) {
+        if (parent.get(vertex) == null){
+            return vertex;
+        }
+
+        return find(parent.get(vertex), parent);
+    }
+
+    public int prims(T value){
+        PriorityQueue<Edge> queue = new PriorityQueue<>();
+        Set<Vertex> visited = new HashSet<>();
+
+        Vertex vertex = vertexMap.get(value);
+
+        visited.add(vertex);
+
+        for (Vertex padosi : vertex.nbrs.keySet()) {
+            Edge edge = new Edge(vertex, padosi, vertex.nbrs.get(padosi));
+            queue.add(edge);
+        }
+
+        int weight = 0;
+
+        while (!queue.isEmpty()){
+            Edge edge = queue.remove();
+            if (!visited.contains(edge.end)){
+                weight += edge.weight;
+                Vertex end = edge.end;
+                visited.add(end);
+
+                for (Vertex padosi: end.nbrs.keySet()) {
+                    if (!visited.contains(padosi)){
+                        Edge e = new Edge(end, padosi, end.nbrs.get(padosi));
+                        queue.add(e);
+                    }
+                }
+            }
+        }
+
+        return weight;
+
+    }
+
+    public AdjacencyMapWeightGraph<T> primsGraph(T value){
+        PriorityQueue<Edge> queue = new PriorityQueue<>();
+        Set<Vertex> visited = new HashSet<>();
+
+        Vertex vertex = vertexMap.get(value);
+
+        visited.add(vertex);
+
+        for (Vertex padosi : vertex.nbrs.keySet()) {
+            Edge edge = new Edge(vertex, padosi, vertex.nbrs.get(padosi));
+            queue.add(edge);
+        }
+
+        AdjacencyMapWeightGraph<T> graph = new AdjacencyMapWeightGraph<>();
+
+        for (T key : vertexMap.keySet()) {
+            graph.addVertex(key);
+        }
+
+        while (!queue.isEmpty()){
+            Edge edge = queue.remove();
+            if (!visited.contains(edge.end)){
+
+                graph.addEdge(edge.start.value, edge.end.value, edge.weight);
+
+                Vertex end = edge.end;
+                visited.add(end);
+
+                for (Vertex padosi: end.nbrs.keySet()) {
+                    if (!visited.contains(padosi)){
+                        Edge e = new Edge(end, padosi, end.nbrs.get(padosi));
+                        queue.add(e);
+                    }
+                }
+            }
+        }
+
+        return graph;
+
+    }
+
 
     private class Vertex {
         private T value;

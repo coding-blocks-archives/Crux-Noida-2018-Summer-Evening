@@ -19,6 +19,6 @@ public class Main {
         graph.addEdge('B', 'D', 10);
         graph.addEdge('B', 'C', 15);
 
-        graph.kruskal();
+        System.out.println(graph.prims('A'));
     }
 }
